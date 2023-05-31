@@ -1,13 +1,13 @@
 import json
 import os.path
 import csv
-from .settings import DATASETS_PATH, RESULTS_PATH
+from .settings import RESULTS_PATH
 
 def read_file(filename):
-    path = DATASETS_PATH + filename
+    file = filename
 
-    if os.path.exists(path):
-        with open(path, 'r') as reader:
+    if os.path.exists(file):
+        with open(file, 'r') as reader:
             data = reader.read()
     else:
         raise FileNotFoundError(f"{filename} was not found!")
@@ -16,7 +16,7 @@ def read_file(filename):
 
 def write_file(thread_count, archive, rows):
 
-    file = archive.split(".")[0]
+    file = os.path.basename(archive).split(".")[0]
     thread = (str(thread_count) + "_threads") if int(thread_count) > 1 else (str(thread_count) + "_thread")
     filename = f"anonimized_data_{thread}_{file}.csv"
     path = RESULTS_PATH + filename
