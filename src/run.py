@@ -13,7 +13,7 @@ class add_row(threading.Thread):
     def fetch_row(self):
         for data in self.dataset:
             body = PAYLOAD_CONFIGURATION
-            body.update({'database':data})
+            body.update({'database':[data]})
             row = []
             self.rows.append(row)
             row.append("thread-"+str(self.thread))
