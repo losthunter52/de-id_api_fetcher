@@ -13,7 +13,6 @@ Configure ./src/settings.py:
   USERNAME = "username"
   PASSWORD = "password"
 
-  PAYLOAD_CONFIGURATION = {}
   [...]
 ```
 
