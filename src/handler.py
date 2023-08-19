@@ -3,6 +3,7 @@ import os.path
 import csv
 from .settings import RESULTS_PATH
 
+
 def read_file(filename):
     file = filename
 

@@ -5,6 +5,7 @@ from .settings import *
 from .handler import *
 from .fetcher import *
 
+
 class add_row(threading.Thread):
     def __init__(self, dataset, thread, rows, headers):
         threading.Thread.__init__(self)
