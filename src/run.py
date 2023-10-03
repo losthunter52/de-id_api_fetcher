@@ -5,31 +5,38 @@ from .settings import *
 from .handler import *
 from .fetcher import *
 
-
-class add_row(threading.Thread):
-    def __init__(self, dataset, thread, rows, headers):
+class AddRowThread(threading.Thread):
+    def __init__(self, dataset, thread, rows, headers, payload, url):
         threading.Thread.__init__(self)
         self.dataset = dataset
         self.thread = thread
         self.rows = rows
         self.headers = headers
+        self.payload = payload
+        self.url = url
 
     def fetch_row(self):
         for data in self.dataset:
-            body = PAYLOAD_CONFIGURATION
-            body.update({'data':[data]})
-            row = []
+            body = {}
+            if self.payload == "1":
+                body = PAYLOAD_CONFIGURATION_1
+            elif self.payload == "2":
+                body = PAYLOAD_CONFIGURATION_2
+            elif self.payload == "3":
+                body = PAYLOAD_CONFIGURATION_3
+            if self.url == "1":
+                self.url = URL_SYNC
+            elif self.url == "2":
+                self.url = URL_ASSYNC
+            body.update({'data': [data]})
+            row = ["thread-" + str(self.thread), len(self.rows) + 1]
+            row.extend([fetch_data(body, self.url, self.headers) for _ in range(5)])
             self.rows.append(row)
-            row.append("thread-"+str(self.thread))
-            index = len(self.rows)
-            row.append(index)
-            for t in range(5):
-                row.append(fetch(body, URL, self.headers))
-    
+
     def run(self):
         self.fetch_row()
 
-def Run(archive, threads):
+def run(archive, threads, payload, url):
     rows = []
     active_threads = []
 
@@ -44,15 +51,14 @@ def Run(archive, threads):
     response = json.loads(post.text)
     headers.update({'Authorization': 'Token ' + response['token']})
 
-
     for i in range(int(threads)):
         thread = i + 1
         dataset = read_file(archive)
-        t = add_row(dataset, thread, rows, headers)
+        t = AddRowThread(dataset, thread, rows, headers, payload, url)
         t.start()
         active_threads.append(t)
 
     for t in active_threads:
         t.join()
 
-    write_file(threads, archive, rows)
+    write_file(threads, archive, rows, payload, url)

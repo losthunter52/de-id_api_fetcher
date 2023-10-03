@@ -3,28 +3,24 @@ import os.path
 import csv
 from .settings import RESULTS_PATH
 
-
 def read_file(filename):
-    file = filename
-
-    if os.path.exists(file):
-        with open(file, 'r') as reader:
+    if os.path.exists(filename):
+        with open(filename, 'r', encoding='utf8') as reader:
             data = reader.read()
     else:
         raise FileNotFoundError(f"{filename} was not found!")
-    
+
     return json.loads(data)
 
-def write_file(thread_count, archive, rows):
-
-    file = os.path.basename(archive).split(".")[0]
-    thread = (str(thread_count) + "_threads") if int(thread_count) > 1 else (str(thread_count) + "_thread")
-    filename = f"anonimized_data_{thread}_{file}.csv"
-    path = RESULTS_PATH + filename
+def write_file(thread_count, archive, rows, payload, url):
+    file_base = os.path.basename(archive).split(".")[0]
+    thread_label = f"{thread_count}_threads" if int(thread_count) > 1 else f"{thread_count}_thread"
+    url_label = f"sync" if int(url) == 1 else f"assync"
+    filename = f"anonimized_data_{thread_label}_{file_base}_payload_{payload}_{url_label}.csv"
+    path = os.path.join(RESULTS_PATH, f"{filename}")
     header = ["thread", "registro", "tempo1", "tempo2", "tempo3", "tempo4", "tempo5"]
 
     with open(path, 'w', newline='', encoding='utf8') as file:
         writer = csv.writer(file, delimiter=';')
         writer.writerow(header)
-        for row in rows:
-            writer.writerow(row)
+        writer.writerows(rows)
