@@ -1,11 +1,10 @@
-﻿
-# Anonymizer API Fetcher
+# De-ID API Fetcher
 
-This project sends requests to an API and performs different data anonymization techniques on a chosen dataset based on the specified payload parameter.
+This project sends requests to an API to perform different data anonymization techniques on a chosen dataset based on the specified payload parameter while capturing execution times.
 
 ## Introduction
 
-The purpose of this project is to demonstrate how different data anonymization techniques can be applied to a given dataset when sending requests to an API. The project supports three different payload configurations: 1, 2, and 3. Each payload configuration corresponds to a specific set of data anonymization techniques.
+The purpose of this project is to demonstrate how different data anonymization techniques can be applied to a given dataset by sending requests to an API. The project supports three different payload configurations: 1, 2, and 3. Each payload configuration corresponds to a specific set of data anonymization techniques, and the project captures the execution times for each of these techniques.
 
 ## Result Example
 
