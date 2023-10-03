@@ -1,7 +1,7 @@
-URL_ASSYNC = "http://secstor.canoinhas.ifsc.edu.br:40123/anonymize"
-URL_SYNC = "http://secstor.canoinhas.ifsc.edu.br:40123/anonymize_sync"
-LOGIN_URL = "http://secstor.canoinhas.ifsc.edu.br:40123/login"
-REGISTER_URL = "http://secstor.canoinhas.ifsc.edu.br:40123/register"
+URL_ASSYNC = "http://127.0.0.1:8000/anonymize"
+URL_SYNC = "http://127.0.0.1:8000/anonymize_sync"
+LOGIN_URL = "http://127.0.0.1:8000/login"
+REGISTER_URL = "http://127.0.0.1:8000/register"
 
 USERNAME = "teste01"
 PASSWORD = "teste01"
