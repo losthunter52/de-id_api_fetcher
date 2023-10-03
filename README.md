@@ -13,7 +13,7 @@ In this example, we use the dataset "1kB_100objects_dataset.json" and run the da
 
 Payload 1 Results:
 
-| Propriedade              | Antes        | Depois      |
+| Property                 | Before       | After       |
 |--------------------------|--------------|-------------|
 | k-anonymity              | 1.0          | 100.0       |
 | l-diversity              | 1.0          | 8.0         |
@@ -23,7 +23,7 @@ Payload 1 Results:
 
 Payload 2 Results:
 
-| Propriedade              | Antes        | Depois      |
+| Property                 | Before       | After       |
 |--------------------------|--------------|-------------|
 | k-anonymity              | 1.0          | 100.0       |
 | l-diversity              | 1.0          | 8.0         |
@@ -34,7 +34,7 @@ Payload 2 Results:
 
 Payload 3 Results:
 
-| Propriedade              | Antes        | Depois      |
+| Property                 | Before       | After       |
 |--------------------------|--------------|-------------|
 | k-anonymity              | 1.0          | 1.0         |
 | l-diversity              | 1.0          | 1.0         |
